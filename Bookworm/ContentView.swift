@@ -24,7 +24,7 @@ struct ContentView: View {
                     }
                 }
                 .sheet(isPresented: $showAddBookView) {
-                    _AddBookView()
+                    AddBookView()
                 }
         }
     }
