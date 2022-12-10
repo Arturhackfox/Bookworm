@@ -15,7 +15,7 @@ struct AddBookView: View {
     @State var rating = 3
     @State var author = ""
     @State var review = ""
-    @State var genre = ""
+    @State var genre = "Fantasy"
     
     var genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     

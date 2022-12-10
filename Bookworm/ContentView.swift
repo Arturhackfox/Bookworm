@@ -15,7 +15,7 @@ struct ContentView: View {
     
     @State private var showAddBookView = false
     var body: some View {
-        NavigationStack{
+        NavigationView{
             List{
                 ForEach(books) { book in
                     NavigationLink{
@@ -36,14 +36,15 @@ struct ContentView: View {
             }
             .navigationTitle("Bookworm")
             .toolbar{
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add book"){
+                    Button{
                         showAddBookView.toggle()
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
             }
