@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [
-        SortDescriptor(\.title, order: .reverse)
+        SortDescriptor(\.title)
     ]) var books: FetchedResults<Book>
     
     @State private var showAddBookView = false
@@ -27,6 +27,7 @@ struct ContentView: View {
                             VStack(alignment: .leading){
                                 Text(book.title ?? "Unknown title")
                                     .font(.headline)
+                                    .foregroundColor(book.rating == 1 ? .red : .primary)
                                 Text(book.author ?? "Unknown author")
                             }
                         }

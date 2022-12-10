@@ -21,15 +21,26 @@ struct DetailView: View {
                 Image(book.genre ?? "FANTASY")
                     .resizable()
                     .scaledToFit()
-                
-                Text(book.genre?.uppercased() ?? "FANTASY")
-                    .font(.caption)
-                    .fontWeight(.black)
-                    .padding(8)
-                    .background(.black.opacity(0.75))
-                    .clipShape(Capsule())
-                    .offset(x: -5, y: -5)
-                
+                HStack{
+                    
+                    Text("\(book.date?.formatted(date: .abbreviated, time: .shortened) ?? "N/A")")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .fontWeight(.black)
+                        .padding(8)
+                        .background(.black.opacity(0.75))
+                        .clipShape(Capsule())
+                        .offset(x: -5, y: -5)
+                    
+                    Text(book.genre?.uppercased() ?? "FANTASY")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .fontWeight(.black)
+                        .padding(8)
+                        .background(.black.opacity(0.75))
+                        .clipShape(Capsule())
+                        .offset(x: -5, y: -5)
+                }
                 
             }
             
