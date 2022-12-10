@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.dismiss) var dismiss
     
     let book: Book
+    
+    @State var isDeleteAlertShowing = false
     
     var body: some View {
         ScrollView{
@@ -43,6 +47,28 @@ struct DetailView: View {
         }
         .navigationTitle(book.title ?? "Unknown")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Delete book", isPresented: $isDeleteAlertShowing) {
+            Button("Delete", role: .destructive, action: deleteBook)
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Are you sure?")
+        }
+        .toolbar{
+            Button{
+                isDeleteAlertShowing = true
+            } label: {
+                Label("Delete this book", systemImage: "trash")
+            }
+        }
+        
+    }
+    
+    func deleteBook(){
+        moc.delete(book)
+        
+        try? moc.save()
+        
+        dismiss()
     }
 }
 
